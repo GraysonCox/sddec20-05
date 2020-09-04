@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+	<a class="navbar-brand" href="/home">Network Manager</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarData"
+			aria-controls="navbarData" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarData">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/home">Nodes <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/node/1">Live Stream</a>
+			</li>
+		</ul>
+		<button type="button" (click)="fetchNodes()">Refresh</button>
+	</div>
+</nav>
+
+<!--<div class="header">-->
+<!--	<h1>Nodes in your network</h1>-->
+<!--	<div class="spacer"></div>-->
+<!--	<button type="button" (click)="fetchNodes()">Refresh</button>-->
+<!--</div>-->
+
+
+<!--	<a *ngFor="let node of nodes | async" routerLink="/node/{{node.id}}">-->
+<br>
+<div class="row justify-content-center" style="padding-right: 10px; padding-left: 10px;">
+
+	<div *ngFor="let node of nodes | async; let $i = index" [attr.data-index]="$i" class="col-sm-4">
+
+		<div class="card mb-4 box-shadow">
+			<div class="card-header">
+				<h4 class="my-0 font-weight-normal">{{node.name}}</h4>
+			</div>
+			<div class="card-body">
+				<ul class="list-unstyled mt-3 mb-4">
+					<li>Type: {{node.type}}</li>
+					<li>IP Address: {{node.ipAddress}}</li>
+					<li>Battery Percentage: {{node.batteryPercentage}}%</li>
+				</ul>
+				<button type="button" class="btn btn-sm btn-block btn-info" routerLink="/node/{{node.id}}">See More
+				</button>
+			</div>
+		</div>
+	</div>
+	<!--		<div class="module">-->
+	<!--			<h3>{{node.name}}</h3>-->
+	<!--			<p>{{node.ipAddress}}</p>-->
+	<!--		</div>-->
+	<!--	</a>-->
+</div>
+
