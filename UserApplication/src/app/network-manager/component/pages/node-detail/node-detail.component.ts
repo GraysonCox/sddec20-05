@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoPlayerComponent } from 'src/app/network-manager/component/common/video-player/video-player.component';
-import { Node } from 'src/app/network-manager/model/node';
+import { NodeModel } from 'src/app/network-manager/model/node.model';
 import { NodeService } from 'src/app/network-manager/service/node/node.service';
 
 import { VideoStreamService } from 'src/app/network-manager/service/video-stream/video-stream.service';
@@ -13,7 +13,7 @@ import { VideoStreamService } from 'src/app/network-manager/service/video-stream
 })
 export class NodeDetailComponent implements OnInit {
 
-	node: Node;
+	node: NodeModel;
 	other: any;
 	@ViewChild('videoPlayer') private videoPlayer: VideoPlayerComponent;
 
@@ -41,8 +41,8 @@ export class NodeDetailComponent implements OnInit {
 
 	fetchNode(): void {
 		let id = +this.route.snapshot.paramMap.get('id');
-		this.nodeService.getNode(id)
-			.subscribe((node: Node) => this.node = node);
+		this.nodeService.getNodeById(id)
+			.subscribe((node: NodeModel) => this.node = node);
 	}
 
 	fetchVideoStream(): void {

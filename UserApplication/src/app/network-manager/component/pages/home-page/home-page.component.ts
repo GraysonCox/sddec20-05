@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { Node } from 'src/app/network-manager/model/node';
+import { NodeModel } from 'src/app/network-manager/model/node.model';
 
 import { NodeService } from 'src/app/network-manager/service/node/node.service';
 
@@ -12,7 +12,7 @@ import { NodeService } from 'src/app/network-manager/service/node/node.service';
 })
 export class HomePageComponent implements OnInit {
 
-	nodes: Observable<Node[]>;
+	nodes: Observable<NodeModel[]>;
 	$i: number;
 
 	constructor(private nodeService: NodeService) {
@@ -23,7 +23,7 @@ export class HomePageComponent implements OnInit {
 	}
 
 	fetchNodes(): void {
-		this.nodes = this.nodeService.getNodes();
+		this.nodes = this.nodeService.getAllNodes();
 	}
 
 }

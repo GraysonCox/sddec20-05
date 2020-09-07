@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://4f6bc8cb-b963-4f81-9e82-660f57824c28.mock.pstmn.io",
+    "target": "http://localhost:8080",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
