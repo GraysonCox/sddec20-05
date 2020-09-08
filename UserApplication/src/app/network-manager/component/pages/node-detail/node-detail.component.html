@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+	<a class="navbar-brand" href="/home">Network Manager</a>
+	<button aria-controls="navbarData" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+			data-target="#navbarData" data-toggle="collapse" type="button">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarData">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/home">Nodes <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/video-player">Live Stream</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<ng-container *ngIf="node != null; else elseTemplate">
+	<div *ngIf='node.type == "SENSOR"; else other'>
+		<div class="container">
+			<div class="row justify-content-center">
+				<h1>{{node.name}}</h1>
+			</div>
+			<div class="row justify-content-center">
+
+				<br>
+				<app-video-player #videoPlayer (click)="toggleVideoStream()"></app-video-player>
+			</div>
+			<br>
+			<div class="row">
+				<div class="container">
+					<div class="card text-center">
+						<div class="card-header">
+							Node Information
+						</div>
+						<div class="card-body">
+							<table class="table">
+								<thead style="text-align: center">
+								<tr>
+									<td><b>Node ID</b></td>
+									<td><b>Type</b></td>
+									<td><b>Public IP</b></td>
+									<td><b>Battery Percentage</b></td>
+								</tr>
+								</thead>
+								<tbody>
+								<tr style="text-align: center">
+									<td>{{node.id}}</td>
+									<td>{{node.type}}</td>
+									<td>{{node.ipAddress}}</td>
+									<td>{{node.batteryPercentage}} %</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ng-template #other>
+		<br>
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					Node Information
+				</div>
+				<div class="card-body">
+					<h4 class="card-title">{{node.name}}</h4>
+					<br>
+					<table class="table">
+						<thead style="text-align: center">
+						<tr>
+							<td><b>Node ID</b></td>
+							<td><b>Type</b></td>
+							<td><b>Public IP</b></td>
+							<td><b>Battery Percentage</b></td>
+						</tr>
+						</thead>
+						<tbody>
+						<tr style="text-align: center">
+							<td>{{node.id}}</td>
+							<td>{{node.type}}</td>
+							<td>{{node.ipAddress}}</td>
+							<td>{{node.batteryPercentage}} %</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+</ng-container>
+<ng-template #elseTemplate>
+	<p>Loading ...</p>
+</ng-template>
