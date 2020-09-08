@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { VideoPlayerComponent } from 'src/app/network-manager/component/common/video-player/video-player.component';
+import { Node } from 'src/app/network-manager/model/node';
+import { NodeService } from 'src/app/network-manager/service/node/node.service';
 
-import { VideoStreamService } from 'src/app/service/video-stream/video-stream.service';
-import { NodeService } from 'src/app/service/node/node.service';
-import { VideoPlayerComponent } from 'src/app/component/video-player/video-player.component';
-import { Node } from 'src/app/model/node';
+import { VideoStreamService } from 'src/app/network-manager/service/video-stream/video-stream.service';
 
 @Component({
 	selector: 'app-node-detail',
@@ -13,10 +13,9 @@ import { Node } from 'src/app/model/node';
 })
 export class NodeDetailComponent implements OnInit {
 
-	@ViewChild('videoPlayer') private videoPlayer: VideoPlayerComponent;
-
 	node: Node;
 	other: any;
+	@ViewChild('videoPlayer') private videoPlayer: VideoPlayerComponent;
 
 	constructor(
 		private route: ActivatedRoute,

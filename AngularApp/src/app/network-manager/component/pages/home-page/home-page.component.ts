@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { Node } from 'src/app/network-manager/model/node';
 
-import { NodeService } from 'src/app/service/node/node.service';
-import { Node } from 'src/app/model/node';
+import { NodeService } from 'src/app/network-manager/service/node/node.service';
 
 @Component({
 	selector: 'app-home-page',

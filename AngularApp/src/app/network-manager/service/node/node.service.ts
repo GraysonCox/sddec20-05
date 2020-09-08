@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Node } from 'src/app/model/node';
-
+import { Node } from 'src/app/network-manager/model/node';
 
 @Injectable({
 	providedIn: 'root'
@@ -26,11 +25,11 @@ export class NodeService {
 	}
 
 	getNode(id: number): Observable<Node> {
-		let url = `${this.nodesUrl}/${id}`;
+		let url = `${ this.nodesUrl }/${ id }`;
 		return this.http.get<Node>(url)
 			.pipe(
-				tap(_ => this.log(`fetched node id=${id}`)),
-				catchError(this.handleError<Node>(`getNode id=${id}`))
+				tap(_ => this.log(`fetched node id=${ id }`)),
+				catchError(this.handleError<Node>(`getNode id=${ id }`))
 			);
 	}
 
@@ -46,7 +45,7 @@ export class NodeService {
 			console.error(error); // log to console instead
 
 			// TODO: better job of transforming error for user consumption
-			this.log(`${operation} failed: ${error.message}`);
+			this.log(`${ operation } failed: ${ error.message }`);
 
 			// Let the app keep running by returning an empty result.
 			return of(result as T);
@@ -57,7 +56,7 @@ export class NodeService {
 	 * Log a NodeService message.
 	 */
 	private log(message: string) {
-		console.log(`NodeService: ${message}`);
+		console.log(`NodeService: ${ message }`);
 	}
 
 }

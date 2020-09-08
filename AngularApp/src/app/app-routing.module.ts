@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { NodeDetailComponent } from 'src/app/component/node-detail/node-detail.component';
-import { HomePageComponent } from 'src/app/component/home-page/home-page.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-	{path: '', redirectTo: '/home', pathMatch: 'full'},
-	{path: 'home', component: HomePageComponent},
-	{path: 'node/:id', component: NodeDetailComponent},
+	{ path: 'network-manager', loadChildren: 'src/app/network-manager/network-manager.module#NetworkManagerModule' },
 ];
 
 @NgModule({
