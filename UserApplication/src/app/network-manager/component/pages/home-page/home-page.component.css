@@ -1,0 +1,32 @@
+.header {
+	display: flex;
+}
+
+.spacer {
+	flex: 1;
+}
+
+.module {
+	padding: 20px;
+	text-align: left;
+	color: #eee;
+	max-height: 120px;
+	min-width: 120px;
+	background-color: #3f525c;
+	border-radius: 16px;
+}
+
+.module:hover {
+	background-color: #EEE;
+	cursor: pointer;
+	color: #607d8b;
+}
+
+button {
+	border-radius: 16px;
+}
+
+button:hover {
+	cursor: pointer;
+	color: #607d8b;
+}
