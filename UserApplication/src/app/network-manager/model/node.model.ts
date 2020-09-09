@@ -1,9 +1,4 @@
-export enum NodeType {
-	SENSOR,
-	RELAY
-}
-
-export interface Node {
+export interface NodeModel {
 	id: number;
 	type: string;
 	name: string;

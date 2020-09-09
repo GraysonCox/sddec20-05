@@ -4,32 +4,48 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Node } from 'src/app/network-manager/model/node';
+import { NodeModel } from 'src/app/network-manager/model/node.model';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class NodeService {
 
-	private nodesUrl: string = 'api/node';
-
 	constructor(private http: HttpClient) {
 	}
 
-	getNodes(): Observable<Node[]> {
-		return this.http.get<Node[]>(this.nodesUrl)
+	private nodesUrl = 'api/node';
+
+	/**
+	 * Log a NodeService message.
+	 */
+	private static log(message: string) {
+		// TODO: Make a logger class.
+		console.log(`NodeService: ${ message }`);
+	}
+
+	/**
+	 * Returns a list containing all the active nodes in the network.
+	 */
+	getAllNodes(): Observable<NodeModel[]> {
+		const url = `${ this.nodesUrl }/all`;
+		return this.http.get<NodeModel[]>(url)
 			.pipe(
-				tap(_ => this.log('fetched nodes')),
-				catchError(this.handleError<Node[]>('getNodes', []))
+				tap(_ => NodeService.log('fetched nodes')),
+				catchError(this.handleError<NodeModel[]>('getNodes', []))
 			);
 	}
 
-	getNode(id: number): Observable<Node> {
-		let url = `${ this.nodesUrl }/${ id }`;
-		return this.http.get<Node>(url)
+	/**
+	 * Returns the node with the given ID, or null if the node does not exist.
+	 * @param id The node ID.
+	 */
+	getNodeById(id: number): Observable<NodeModel> {
+		const url = `${ this.nodesUrl }/${ id }`;
+		return this.http.get<NodeModel>(url)
 			.pipe(
-				tap(_ => this.log(`fetched node id=${ id }`)),
-				catchError(this.handleError<Node>(`getNode id=${ id }`))
+				tap(_ => NodeService.log(`fetched node id=${ id }`)),
+				catchError(this.handleError<NodeModel>(`getNode id=${ id }`))
 			);
 	}
 
@@ -45,18 +61,11 @@ export class NodeService {
 			console.error(error); // log to console instead
 
 			// TODO: better job of transforming error for user consumption
-			this.log(`${ operation } failed: ${ error.message }`);
+			NodeService.log(`${ operation } failed: ${ error.message }`);
 
 			// Let the app keep running by returning an empty result.
 			return of(result as T);
 		};
-	}
-
-	/**
-	 * Log a NodeService message.
-	 */
-	private log(message: string) {
-		console.log(`NodeService: ${ message }`);
 	}
 
 }
