@@ -18,7 +18,7 @@
 </nav>
 
 <ng-container *ngIf="node != null; else elseTemplate">
-	<div *ngIf='node.type == "SENSOR"; else other'>
+	<div *ngIf='node.type == "CAMERA"; else other'>
 		<div class="container">
 			<div class="row justify-content-center">
 				<h1>{{node.name}}</h1>
@@ -26,7 +26,8 @@
 			<div class="row justify-content-center">
 
 				<br>
-				<app-video-player #videoPlayer (click)="toggleVideoStream()"></app-video-player>
+				<app-live-video-player [streamId]="42069"
+									   [streamUrl]="'http://10.36.156.121:8088/janus'"></app-live-video-player>
 			</div>
 			<br>
 			<div class="row">

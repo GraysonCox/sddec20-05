@@ -29,7 +29,9 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "src/app/network-manager/component/common/live-video-player/adapter.min.js",
+              "src/app/network-manager/component/common/live-video-player/janus.js"
             ]
           },
           "configurations": {
