@@ -14,7 +14,7 @@ export class NodeService {
 	constructor(private http: HttpClient) {
 	}
 
-	private nodesUrl = 'api/node';
+	private nodesUrl = 'http://localhost:8081/api/node';
 
 	/**
 	 * Log a NodeService message.
