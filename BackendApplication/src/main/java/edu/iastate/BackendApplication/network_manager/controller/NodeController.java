@@ -23,8 +23,7 @@ public interface NodeController {
 	 * @return A list containing all the active nodes in the network.
 	 * @throws Exception If there is an exception while fetching all the nodes in the network.
 	 */
-	@CrossOrigin
-	 @GetMapping("/all")
+	@GetMapping("/all")
 	List<NodeModel> getAllNodes() throws Exception;
 
 	/**
@@ -34,7 +33,6 @@ public interface NodeController {
 	 * @return The node with the given ID, or null if the node does not exist.
 	 * @throws Exception If there is an exception while fetching the desired node.
 	 */
-	@CrossOrigin
 	@GetMapping("/{nodeId}")
 	NodeModel getNodeById(@PathVariable Long nodeId) throws Exception;
 
