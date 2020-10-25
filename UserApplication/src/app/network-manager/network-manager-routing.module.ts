@@ -4,7 +4,7 @@ import { HomePageComponent } from 'src/app/network-manager/component/pages/home-
 import { NodeDetailComponent } from 'src/app/network-manager/component/pages/node-detail/node-detail.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/network-manager/home', pathMatch: 'full' },
+	{ path: '', redirectTo: '/home', pathMatch: 'full' },
 	{ path: 'home', component: HomePageComponent },
 	{ path: 'node/:id', component: NodeDetailComponent }
 ];
