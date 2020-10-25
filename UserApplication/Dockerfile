@@ -22,7 +22,7 @@ RUN ng build --prod
 
 FROM nginx:1.16.0-alpine
 
-COPY --from=build /app/dist/sd-ui-demo /usr/share/nginx/html
+COPY --from=build /app/dist/user-application /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
