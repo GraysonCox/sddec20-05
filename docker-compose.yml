@@ -1,14 +1,13 @@
 version: '2'
+
 services:
-    frontend:
-        build: './UserApplication'
-       
-        ports:
-            - "8080:80"
-    backend:
-        build: './BackendApplication'
-        depends_on:
-            - frontend
-        ports:
-            - 8081:8081
-    
+  backend-application:
+    build: './BackendApplication'
+    ports:
+      - "8081:8081"
+  user-application:
+    build: './UserApplication'
+    depends_on:
+      - backend-application
+    ports:
+      - "8080:80"
