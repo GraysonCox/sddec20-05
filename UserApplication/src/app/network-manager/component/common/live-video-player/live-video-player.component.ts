@@ -111,4 +111,12 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 		});
 	}
 
+	private openFullScreen() {
+		var video = document.getElementById("video");
+
+		if (video.requestFullscreen) {
+			video.requestFullscreen();
+		}
+	}
+
 }
