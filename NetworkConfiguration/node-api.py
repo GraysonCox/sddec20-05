@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import flask
 from flask import request
@@ -6,8 +6,6 @@ import os
 
 ip_addr = ''
 mesh_network_name = ''
-node_type = ''
-node_name = ''
 
 
 try:
@@ -22,10 +20,6 @@ try:
             ip_addr = type[1]
         if(type[0] == 'MESH_NETWORK_NAME'):
             mesh_network_name = type[1]
-        if(type[0] == 'NODE_TYPE'):
-            node_type = type[1]
-        if(type[0] == 'NODE_NAME'):
-            node_name = type[1]
 
     f.close()
 
@@ -39,7 +33,7 @@ if ip_addr != None:
 else : node_id = ''
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 @app.route('/', methods=["GET"])
 def home():
@@ -207,37 +201,39 @@ def api_node_ipaddr_control(ipaddr):
         try:
             if request.method == "POST":
                 if(len(ipaddr) < 20):
+                    subnets = ipaddr.split('.')
+                    if(len(subnets)==4):
+                        for num in subnets:
+                            #print num
+                            number = int(num)
+                            if(not( (number < 256) and (number >-1))):
+                                return "ip address not in range"
 
-                    try:
-                        f = open("network_settings.cfg", "r+")
-                        lines = f.readlines()
-                        f.close()
+                        try:
+                            f = open("network_settings.cfg", "r+")
+                            lines = f.readlines()
+                            f.close()
 
-                        f = open("network_settings.cfg", "w").close()
-                        f = open("network_settings.cfg", "r+")
+                            f = open("network_settings.cfg", "w").close()
+                            f = open("network_settings.cfg", "r+")
 
-                        for ind in range (0, len(lines)):
-                            line_data = lines[ind].split('=')
-                            if(line_data[0] == 'NODE_IP_ADDRESS'):
-                                line_data[1] = ipaddr
-                                mod_line = str(line_data[0]) + '=' + str(line_data[1]) + '\n'
-                                lines[ind] = mod_line
-                                print(lines)
-                                f.writelines(lines)
+                            for ind in range (0, len(lines)):
+                                line_data = lines[ind].split('=')
+                                if(line_data[0] == 'NODE_IP_ADDRESS'):
+                                    line_data[1] = ipaddr
+                                    mod_line = str(line_data[0]) + '=' + str(line_data[1]) + '\n'
+                                    lines[ind] = mod_line
+                            f.writelines(lines)
 
-                        f.close()
+                            f.close()
+                            return "ip address set"
 
-                    except Exception as e:
-                        print(e)
-
-
-                    return 'ok'
-                else:
-                    return 'Limit type to 20 characters'
+                        except Exception as e:
+                            print(e)
 
         except Exception as e:
             print(e)
-            return ipaddr
+#    return "error setting ip address: incorrect format"
 
 @app.route('/node/networkname/<name>', methods=["POST"])
 def api_node_network_name_control(name):
@@ -276,4 +272,4 @@ def api_node_network_name_control(name):
             print(e)
             return name
 
-app.run()
+app.run(host='0.0.0.0')
