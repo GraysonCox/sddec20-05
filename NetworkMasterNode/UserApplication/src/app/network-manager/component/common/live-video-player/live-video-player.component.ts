@@ -15,7 +15,6 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 	private static JANUS_PLUGIN_NAME = 'janus.plugin.streaming';
 	private static REQUEST_WATCH = 'watch';
 	private static REQUEST_START = 'start';
-	private static STREAM_ID = 42069;
 
 	@ViewChild('video') private video: any;
 
@@ -25,17 +24,16 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		this.startVideoStream(LiveVideoPlayerComponent.STREAM_ID, this.streamUrl);
+		this.startVideoStream(this.streamUrl);
 	}
 
 	/**
-	 * Starts displaying the live video feed from the Janus server with the given URL and stream number.
+	 * Starts displaying the live video feed from the Janus server with the given URL.
 	 *
-	 * @param streamId The unique number of the stream to show.
 	 * @param streamUrl The URL of the Janus server.
 	 * @private
 	 */
-	private startVideoStream(streamId: number, streamUrl: string): void {
+	private startVideoStream(streamUrl: string): void {
 		let streaming = null;
 		const videoElement = this.video.nativeElement;
 		Janus.init({
@@ -52,7 +50,7 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 							success(pluginHandle) {
 								streaming = pluginHandle;
 								console.log('Plugin attached.');
-								const body = { request: LiveVideoPlayerComponent.REQUEST_WATCH, id: streamId };
+								const body = { request: LiveVideoPlayerComponent.REQUEST_WATCH };
 								streaming.send({ message: body });
 							},
 							error(cause) {
