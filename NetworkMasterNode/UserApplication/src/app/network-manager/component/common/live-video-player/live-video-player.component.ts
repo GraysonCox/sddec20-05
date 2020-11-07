@@ -3,7 +3,7 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 declare var Janus: any;
 
 /**
- * A video component that shows the live video stream for a given stream URL.
+ * A video component that shows the live video stream for a given stream ID and URL.
  */
 @Component({
 	selector: 'app-live-video-player',
@@ -18,6 +18,7 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 
 	@ViewChild('video') private video: any;
 
+	@Input() streamId: number;
 	@Input() streamUrl: string;
 
 	constructor() {
@@ -28,12 +29,13 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 	}
 
 	/**
-	 * Starts displaying the live video feed from the Janus server with the given URL.
+	 * Starts displaying the live video feed from the Janus server with the given URL and stream number.
 	 *
+	 * @param streamId The unique number of the stream to show.
 	 * @param streamUrl The URL of the Janus server.
 	 * @private
 	 */
-	private startVideoStream(streamUrl: string): void {
+	private startVideoStream(streamId: number, streamUrl: string): void {
 		let streaming = null;
 		const videoElement = this.video.nativeElement;
 		Janus.init({
@@ -50,7 +52,7 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 							success(pluginHandle) {
 								streaming = pluginHandle;
 								console.log('Plugin attached.');
-								const body = { request: LiveVideoPlayerComponent.REQUEST_WATCH };
+								const body = { request: LiveVideoPlayerComponent.REQUEST_WATCH, id:streamId };
 								streaming.send({ message: body });
 							},
 							error(cause) {
