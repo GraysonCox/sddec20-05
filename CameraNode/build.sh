@@ -1,3 +1,3 @@
 #!/bin/sh
-#docker build --tag pi .
+docker build -t pi .
 
