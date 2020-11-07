@@ -1,3 +1,3 @@
 #!/bin/sh
-docker build -t pi .
+docker build -t camera_node .
 
