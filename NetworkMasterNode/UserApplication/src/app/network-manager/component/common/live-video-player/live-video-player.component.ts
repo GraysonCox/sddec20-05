@@ -25,7 +25,7 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		this.startVideoStream(this.streamUrl);
+		this.startVideoStream(this.streamId, this.streamUrl);
 	}
 
 	/**
