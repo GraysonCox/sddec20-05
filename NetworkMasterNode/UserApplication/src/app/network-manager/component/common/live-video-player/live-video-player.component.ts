@@ -52,7 +52,7 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 							success(pluginHandle) {
 								streaming = pluginHandle;
 								console.log('Plugin attached.');
-								const body = { request: LiveVideoPlayerComponent.REQUEST_WATCH, id:streamId };
+								const body = { request: LiveVideoPlayerComponent.REQUEST_WATCH, id: streamId };
 								streaming.send({ message: body });
 							},
 							error(cause) {
