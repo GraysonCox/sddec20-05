@@ -3,7 +3,7 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 declare var Janus: any;
 
 /**
- * A video component that shows the live video stream for a given stream ID and URL.
+ * A video component that shows the live video stream for a given stream URL.
  */
 @Component({
 	selector: 'app-live-video-player',
@@ -15,17 +15,17 @@ export class LiveVideoPlayerComponent implements AfterViewInit {
 	private static JANUS_PLUGIN_NAME = 'janus.plugin.streaming';
 	private static REQUEST_WATCH = 'watch';
 	private static REQUEST_START = 'start';
+	private static STREAM_ID = 1234;
 
 	@ViewChild('video') private video: any;
 
-	@Input() streamId: number;
 	@Input() streamUrl: string;
 
 	constructor() {
 	}
 
 	ngAfterViewInit(): void {
-		this.startVideoStream(this.streamId, this.streamUrl);
+		this.startVideoStream(LiveVideoPlayerComponent.STREAM_ID, this.streamUrl);
 	}
 
 	/**
