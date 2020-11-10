@@ -54,9 +54,9 @@ export class NodeService {
 	 * of the given node.
 	 * @param node The node to persist.
 	 */
-	updateNode(node: NodeModel): void {
+	updateNode(node: NodeModel): Observable<NodeModel> {
 		const url = `${ this.nodesUrl }/update`;
-		this.http.post<NodeModel>(url, node)
+		return this.http.post<NodeModel>(url, node)
 			.pipe(
 				tap(_ => NodeService.log(`updated node IP=${ node.ipAddress }`)),
 				catchError(this.handleError<NodeModel>(`updateNode IP=${ node.ipAddress }`))

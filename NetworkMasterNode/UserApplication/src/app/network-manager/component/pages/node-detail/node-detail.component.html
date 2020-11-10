@@ -36,6 +36,7 @@
 							<table class="table">
 								<thead style="text-align: center">
 								<tr>
+									<td><b>Name</b></td>
 									<td><b>Public IP</b></td>
 									<td><b>Type</b></td>
 									<td><b>Network Name</b></td>
@@ -44,9 +45,10 @@
 								</thead>
 								<tbody>
 								<tr style="text-align: center">
+									<td>{{node.name}} <img src="./pencil-alt.png" (click)="changeName()"/></td>
 									<td>{{node.ipAddress}}</td>
 									<td>{{node.type}}</td>
-									<td>{{node.networkName}}</td>
+									<td>{{node.networkName}} <img src="./pencil-alt.png" (click)="changeNetworkName()"/></td>
 									<td>{{node.batteryPercentage}} %</td>
 								</tr>
 								</tbody>
@@ -70,6 +72,7 @@
 					<table class="table">
 						<thead style="text-align: center">
 						<tr>
+							<td><b>Name</b></td>
 							<td><b>Public IP</b></td>
 							<td><b>Type</b></td>
 							<td><b>Network Name</b></td>
@@ -78,10 +81,11 @@
 						</thead>
 						<tbody>
 						<tr style="text-align: center">
+							<td>{{node.name}} <img src="./pencil-alt.png" (click)="changeName()"/></td>
 							<td>{{node.ipAddress}}</td>
 							<td>{{node.type}}</td>
 							<td>{{node.networkName}}</td>
-							<td>{{node.batteryPercentage}} %</td>
+							<td>{{node.batteryPercentage}} <img src="./pencil-alt.png" (click)="changeNetworkName()"/></td>
 						</tr>
 						</tbody>
 					</table>
