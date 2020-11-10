@@ -1,5 +1,6 @@
 package edu.iastate.BackendApplication.network_manager.controller;
 
+import edu.iastate.BackendApplication.network_manager.exception.NodeServiceException;
 import edu.iastate.BackendApplication.network_manager.model.NodeModel;
 import edu.iastate.BackendApplication.network_manager.service.NodeService;
 
@@ -7,8 +8,6 @@ import java.util.List;
 
 /**
  * The default implementation of NodeController.
- *
- * @author Grayson Cox
  */
 public class NodeControllerImpl implements NodeController {
 
@@ -19,13 +18,13 @@ public class NodeControllerImpl implements NodeController {
 	}
 
 	@Override
-	public List<NodeModel> getAllNodes() throws Exception {
+	public List<NodeModel> getAllNodes() throws NodeServiceException {
 		return nodeService.getAllNodes();
 	}
 
 	@Override
-	public NodeModel getNodeById(Long nodeId) throws Exception {
-		return nodeService.getNodeById(nodeId);
+	public NodeModel getNodeByIpAddress(String ipAddress) throws NodeServiceException {
+		return nodeService.getNodeByIpAddress(ipAddress);
 	}
 
 }

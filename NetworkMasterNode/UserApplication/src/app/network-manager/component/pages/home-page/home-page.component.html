@@ -34,11 +34,13 @@
 			</div>
 			<div class="card-body">
 				<ul class="list-unstyled mt-3 mb-4">
+					<li>Public IP: {{node.ipAddress}}</li>
 					<li>Type: {{node.type}}</li>
-					<li>IP Address: {{node.ipAddress}}</li>
+					<li>Network Name: {{node.networkName}}</li>
 					<li>Battery Percentage: {{node.batteryPercentage}}%</li>
 				</ul>
-				<button class="btn btn-sm btn-block btn-info" routerLink="/node/{{node.id}}" type="button">See More
+				<button class="btn btn-sm btn-block btn-info" routerLink="/node/{{node.ipAddress}}" type="button">
+					See More
 				</button>
 			</div>
 		</div>

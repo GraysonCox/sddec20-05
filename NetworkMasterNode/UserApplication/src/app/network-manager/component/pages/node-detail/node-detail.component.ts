@@ -24,8 +24,8 @@ export class NodeDetailComponent implements OnInit {
 	}
 
 	fetchNode(): void {
-		let id = +this.route.snapshot.paramMap.get('id');
-		this.nodeService.getNodeById(id)
+		const ipAddress = this.route.snapshot.paramMap.get('ipAddress');
+		this.nodeService.getNodeByIpAddress(ipAddress)
 			.subscribe((node: NodeModel) => this.node = node);
 	}
 

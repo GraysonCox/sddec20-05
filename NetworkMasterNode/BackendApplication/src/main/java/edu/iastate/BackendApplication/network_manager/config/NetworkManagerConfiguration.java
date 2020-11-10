@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * The configuration class for the network manager component.
- *
- * @author Grayson Cox
  */
 @Configuration
 public class NetworkManagerConfiguration {
@@ -22,7 +20,7 @@ public class NetworkManagerConfiguration {
 
 	@Bean
 	public NodeService nodeService() {
-		return new NodeServiceImpl(); // TODO
+		return new NodeServiceImpl();
 	}
 
 }

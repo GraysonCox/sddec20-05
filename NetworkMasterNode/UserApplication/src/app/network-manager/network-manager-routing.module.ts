@@ -6,7 +6,7 @@ import { NodeDetailComponent } from 'src/app/network-manager/component/pages/nod
 const routes: Routes = [
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },
 	{ path: 'home', component: HomePageComponent },
-	{ path: 'node/:id', component: NodeDetailComponent }
+	{ path: 'node/:ipAddress', component: NodeDetailComponent }
 ];
 
 @NgModule({

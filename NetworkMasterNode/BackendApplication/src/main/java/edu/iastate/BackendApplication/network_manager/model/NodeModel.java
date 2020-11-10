@@ -4,48 +4,41 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Models a network node.
- *
- * @author Grayson Cox
  */
 public class NodeModel {
 
-	@JsonProperty(value = "id", required = true)
-	private Long id;
-
-	@JsonProperty("type")
-	private String type;
+	@JsonProperty(value = "ipAddress", required = true)
+	private String ipAddress;
 
 	@JsonProperty("name")
 	private String name;
 
-	@JsonProperty("ipAddress")
-	private String ipAddress;
+	@JsonProperty("type")
+	private NodeType type;
+
+	@JsonProperty("networkName")
+	private String networkName;
 
 	@JsonProperty("batteryPercentage")
 	private Integer batteryPercentage;
 
-	public NodeModel(Long id, String type, String name, String ipAddress, Integer batteryPercentage) {
-		this.id = id;
-		this.type = type;
-		this.name = name;
+	public NodeModel(String ipAddress, String name, NodeType type, String networkName, Integer batteryPercentage) {
 		this.ipAddress = ipAddress;
+		this.name = name;
+		this.type = type;
+		this.networkName = networkName;
 		this.batteryPercentage = batteryPercentage;
 	}
 
-	public Long getId() {
-		return id;
+	public NodeModel() {
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getIpAddress() {
+		return ipAddress;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
 	}
 
 	public String getName() {
@@ -56,12 +49,20 @@ public class NodeModel {
 		this.name = name;
 	}
 
-	public String getIpAddress() {
-		return ipAddress;
+	public NodeType getType() {
+		return type;
 	}
 
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
+	public void setType(NodeType type) {
+		this.type = type;
+	}
+
+	public String getNetworkName() {
+		return networkName;
+	}
+
+	public void setNetworkName(String networkName) {
+		this.networkName = networkName;
 	}
 
 	public Integer getBatteryPercentage() {

@@ -1,7 +1,7 @@
 export interface NodeModel {
-	id: number;
+	ipAddress: string;
 	type: string;
 	name: string;
-	ipAddress: string;
+	networkName: string;
 	batteryPercentage: number;
 }
