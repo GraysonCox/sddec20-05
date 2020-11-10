@@ -27,4 +27,9 @@ public class NodeControllerImpl implements NodeController {
 		return nodeService.getNodeByIpAddress(ipAddress);
 	}
 
+	@Override
+	public void updateNode(NodeModel node) throws NodeServiceException {
+		nodeService.updateNode(node);
+	}
+
 }

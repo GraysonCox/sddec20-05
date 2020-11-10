@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class NodeServiceImpl implements NodeService {
 
-	private final List<NodeModel> testNodes = List.of(
+	private List<NodeModel> testNodes = List.of(
 			new NodeModel("192.168.1.7", "Master", NodeType.MASTER, "Network 1", 78),
 			new NodeModel("192.168.1.3", "Relay 1", NodeType.RELAY, "Network 1", 24),
 			new NodeModel("192.168.1.24", "Relay 2", NodeType.RELAY, "Network 1", 68),
@@ -26,6 +26,16 @@ public class NodeServiceImpl implements NodeService {
 	@Override
 	public NodeModel getNodeByIpAddress(String ipAddress) {
 		return testNodes.stream().filter(node -> node.getIpAddress().equals(ipAddress)).findFirst().orElse(null);
+	}
+
+	@Override
+	public void updateNode(NodeModel node) {
+		for (NodeModel liveNode : testNodes) {
+			if (liveNode.getIpAddress().equals(node.getIpAddress())) {
+				liveNode.setName(node.getName());
+				liveNode.setNetworkName(node.getNetworkName());
+			}
+		}
 	}
 
 }

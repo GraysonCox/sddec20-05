@@ -32,4 +32,14 @@ public interface NodeController {
 	@GetMapping("/{ipAddress}")
 	NodeModel getNodeByIpAddress(@PathVariable String ipAddress) throws NodeServiceException;
 
+	/**
+	 * Matches the given node with an existing node by its IP address and updates the existing node with the properties
+	 * of the given node.
+	 *
+	 * @param node The node to persist.
+	 * @throws NodeServiceException If there is an exception while updating the node.
+	 */
+	@PostMapping("/update")
+	void updateNode(@RequestBody NodeModel node) throws NodeServiceException;
+
 }

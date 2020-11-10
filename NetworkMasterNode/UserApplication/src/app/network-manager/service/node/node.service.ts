@@ -50,6 +50,20 @@ export class NodeService {
 	}
 
 	/**
+	 * Matches the given node with an existing node by its IP address and updates the existing node with the properties
+	 * of the given node.
+	 * @param node The node to persist.
+	 */
+	updateNode(node: NodeModel): void {
+		const url = `${ this.nodesUrl }/update`;
+		this.http.post<NodeModel>(url, node)
+			.pipe(
+				tap(_ => NodeService.log(`updated node IP=${ node.ipAddress }`)),
+				catchError(this.handleError<NodeModel>(`updateNode IP=${ node.ipAddress }`))
+			);
+	}
+
+	/**
 	 * Handle Http operation that failed.
 	 * Let the app continue.
 	 * @param operation - name of the operation that failed
