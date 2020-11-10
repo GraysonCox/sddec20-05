@@ -37,15 +37,15 @@ export class NodeService {
 	}
 
 	/**
-	 * Returns the node with the given ID, or null if the node does not exist.
-	 * @param id The node ID.
+	 * Returns the node with the given IPv4 address, or null if the node does not exist.
+	 * @param ipAddress An IPv4 address.
 	 */
-	getNodeById(id: number): Observable<NodeModel> {
-		const url = `${ this.nodesUrl }/${ id }`;
+	getNodeByIpAddress(ipAddress: string): Observable<NodeModel> {
+		const url = `${ this.nodesUrl }/${ ipAddress }`;
 		return this.http.get<NodeModel>(url)
 			.pipe(
-				tap(_ => NodeService.log(`fetched node id=${ id }`)),
-				catchError(this.handleError<NodeModel>(`getNode id=${ id }`))
+				tap(_ => NodeService.log(`fetched node IP=${ ipAddress }`)),
+				catchError(this.handleError<NodeModel>(`getNode IP=${ ipAddress }`))
 			);
 	}
 

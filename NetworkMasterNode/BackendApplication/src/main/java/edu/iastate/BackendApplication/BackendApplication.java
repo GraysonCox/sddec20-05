@@ -9,8 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * The main application.
- *
- * @author Grayson Cox
  */
 @SpringBootApplication
 public class BackendApplication {

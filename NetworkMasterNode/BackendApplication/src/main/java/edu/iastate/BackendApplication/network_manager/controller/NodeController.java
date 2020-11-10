@@ -1,17 +1,13 @@
 package edu.iastate.BackendApplication.network_manager.controller;
 
+import edu.iastate.BackendApplication.network_manager.exception.NodeServiceException;
 import edu.iastate.BackendApplication.network_manager.model.NodeModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Provides a REST API for viewing active nodes in the network.
- *
- * @author Grayson Cox
  */
 @RestController
 @RequestMapping("node")
@@ -21,19 +17,19 @@ public interface NodeController {
 	 * Returns a list containing all the active nodes in the network.
 	 *
 	 * @return A list containing all the active nodes in the network.
-	 * @throws Exception If there is an exception while fetching all the nodes in the network.
+	 * @throws NodeServiceException If there is an exception while fetching all the nodes in the network.
 	 */
 	@GetMapping("/all")
-	List<NodeModel> getAllNodes() throws Exception;
+	List<NodeModel> getAllNodes() throws NodeServiceException;
 
 	/**
-	 * Returns the node with the given ID, or null if the node does not exist.
+	 * Returns the node with the given IPv4 address, or null if the node does not exist.
 	 *
-	 * @param nodeId The node ID.
+	 * @param ipAddress An IPv4 address.
 	 * @return The node with the given ID, or null if the node does not exist.
-	 * @throws Exception If there is an exception while fetching the desired node.
+	 * @throws NodeServiceException If there is an exception while fetching the desired node.
 	 */
-	@GetMapping("/{nodeId}")
-	NodeModel getNodeById(@PathVariable Long nodeId) throws Exception;
+	@GetMapping("/{ipAddress}")
+	NodeModel getNodeByIpAddress(@PathVariable String ipAddress) throws NodeServiceException;
 
 }
