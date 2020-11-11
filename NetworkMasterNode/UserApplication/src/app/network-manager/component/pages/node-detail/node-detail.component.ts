@@ -30,25 +30,23 @@ export class NodeDetailComponent implements OnInit {
 	}
 
 	changeName(): void {
-
 		const prompt = window.prompt('Enter a new node name:', this.node.name);
 
-		this.node.name = prompt.toString();
-		this.nodeService.updateNode(this.node)
-			.subscribe(() => window.alert('Node name updated'));
+		if (prompt != null) {
+			this.node.name = prompt;
+			this.nodeService.updateNode(this.node)
+				.subscribe(() => window.alert('Node name updated'));
+		}
 	}
 
 	changeNetworkName(): void {
-
 		const prompt = window.prompt('Enter a new network name:', this.node.networkName);
 
-		this.node.networkName = prompt.toString();
-		this.nodeService.updateNode(this.node);
-
-		this.nodeService.updateNode(this.node)
-			.subscribe(() => window.alert('Network name updated'));
+		if (prompt != null) {
+			this.node.networkName = prompt;
+			this.nodeService.updateNode(this.node)
+				.subscribe(() => window.alert('Network name updated'));
+		}
 	}
-
-	
 
 }

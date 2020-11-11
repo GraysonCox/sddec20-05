@@ -15,84 +15,45 @@
 </nav>
 
 <ng-container *ngIf="node != null; else elseTemplate">
-	<div *ngIf='node.type == "CAMERA"; else other'>
-		<div class="container">
-			<div class="row justify-content-center">
-				<h1>{{node.name}}</h1>
+	<br>
+	<div *ngIf='node.type == "CAMERA"' class="row justify-content-center">
+		<app-live-video-player [streamUrl]="'http://' + node.ipAddress + ':8088/janus'"></app-live-video-player>
+	</div>
+	<div class="container">
+		<div class="card text-center">
+			<div class="card-header">
+				Node Information
 			</div>
-			<div class="row justify-content-center">
-
+			<div class="card-body">
+				<h4 class="card-title">
+					{{node.name}}
+					<img class="edit-button" (click)="changeName()" src="assets/pencil-alt.png" />
+				</h4>
 				<br>
-				<app-live-video-player [streamUrl]="'http://' + node.ipAddress + ':8088/janus'"></app-live-video-player>
-			</div>
-			<br>
-			<div class="row">
-				<div class="container">
-					<div class="card text-center">
-						<div class="card-header">
-							Node Information
-						</div>
-						<div class="card-body">
-							<table class="table">
-								<thead style="text-align: center">
-								<tr>
-									<td><b>Name</b></td>
-									<td><b>Public IP</b></td>
-									<td><b>Type</b></td>
-									<td><b>Network Name</b></td>
-									<td><b>Battery Percentage</b></td>
-								</tr>
-								</thead>
-								<tbody>
-								<tr style="text-align: center">
-									<td>{{node.name}} <img src="./pencil-alt.png" (click)="changeName()"/></td>
-									<td>{{node.ipAddress}}</td>
-									<td>{{node.type}}</td>
-									<td>{{node.networkName}} <img src="./pencil-alt.png" (click)="changeNetworkName()"/></td>
-									<td>{{node.batteryPercentage}} %</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+				<table class="table">
+					<thead style="text-align: center">
+					<tr>
+						<td><b>Public IP</b></td>
+						<td><b>Type</b></td>
+						<td><b>Network Name</b></td>
+						<td><b>Battery Percentage</b></td>
+					</tr>
+					</thead>
+					<tbody>
+					<tr style="text-align: center">
+						<td>{{node.ipAddress}}</td>
+						<td>{{node.type}}</td>
+						<td>
+							{{node.networkName}}
+							<img class="edit-button" (click)="changeNetworkName()" src="assets/pencil-alt.png" />
+						</td>
+						<td>{{node.batteryPercentage}}</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-	<ng-template #other>
-		<br>
-		<div class="container">
-			<div class="card text-center">
-				<div class="card-header">
-					Node Information
-				</div>
-				<div class="card-body">
-					<h4 class="card-title">{{node.name}}</h4>
-					<br>
-					<table class="table">
-						<thead style="text-align: center">
-						<tr>
-							<td><b>Name</b></td>
-							<td><b>Public IP</b></td>
-							<td><b>Type</b></td>
-							<td><b>Network Name</b></td>
-							<td><b>Battery Percentage</b></td>
-						</tr>
-						</thead>
-						<tbody>
-						<tr style="text-align: center">
-							<td>{{node.name}} <img src="./pencil-alt.png" (click)="changeName()"/></td>
-							<td>{{node.ipAddress}}</td>
-							<td>{{node.type}}</td>
-							<td>{{node.networkName}}</td>
-							<td>{{node.batteryPercentage}} <img src="./pencil-alt.png" (click)="changeNetworkName()"/></td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</ng-template>
 </ng-container>
 <ng-template #elseTemplate>
 	<p>Loading ...</p>
