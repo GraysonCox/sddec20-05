@@ -3,6 +3,7 @@ Here are the steps for running the CameraNode software from the command line:
 - Make sure Raspberry Pi OS is installed on the Pi (https://www.raspberrypi.org/downloads/raspberry-pi-os/)
 - Start the Pi with the camera module and ribbon cable connected
 - Install Docker (https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script)
+- In a terminal, run `sudo raspi-config`. Enable the camera in the Interfacing Options menu. Exit raspi-config and reboot the Pi.
 - Run these commands on the Pi
     - `sudo apt update`
     - `sudo apt install python3-picamera`
