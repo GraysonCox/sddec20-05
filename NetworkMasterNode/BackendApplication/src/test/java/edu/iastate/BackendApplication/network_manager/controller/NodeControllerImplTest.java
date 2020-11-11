@@ -16,6 +16,8 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Unit test for NodeControllerImpl.
@@ -74,6 +76,25 @@ class NodeControllerImplTest {
 
 		assertThatExceptionOfType(NodeServiceException.class)
 				.isThrownBy(() -> nodeController.getNodeByIpAddress(ipAddress));
+	}
+
+	@Test
+	void updateNode_success() throws NodeServiceException {
+		NodeModel node = new NodeModel();
+
+		nodeController.updateNode(node);
+
+		verify(nodeService, times(1)).updateNode(node);
+	}
+
+	@Test
+	void updateNode_throwException() throws NodeServiceException {
+		NodeModel node = new NodeModel();
+
+		doThrow(mock(NodeServiceException.class)).when(nodeService).updateNode(node);
+
+		assertThatExceptionOfType(NodeServiceException.class)
+				.isThrownBy(() -> nodeController.updateNode(node));
 	}
 
 }

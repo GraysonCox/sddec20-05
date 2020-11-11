@@ -1,3 +1,22 @@
 th {
 	text-align: right;
 }
+
+.edit-button {
+	width: 10pt;
+	height: 10pt;
+	opacity: 0.5;
+}
+
+.edit-button:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+#changeName {
+	background-color: #555555;
+}
+
+#changeNetworkName {
+	background-color: #555555;
+}

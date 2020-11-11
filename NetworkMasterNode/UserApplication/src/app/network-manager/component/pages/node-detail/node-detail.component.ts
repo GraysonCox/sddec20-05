@@ -29,4 +29,24 @@ export class NodeDetailComponent implements OnInit {
 			.subscribe((node: NodeModel) => this.node = node);
 	}
 
+	changeName(): void {
+		const prompt = window.prompt('Enter a new node name:', this.node.name);
+
+		if (prompt != null) {
+			this.node.name = prompt;
+			this.nodeService.updateNode(this.node)
+				.subscribe(() => window.alert('Node name updated'));
+		}
+	}
+
+	changeNetworkName(): void {
+		const prompt = window.prompt('Enter a new network name:', this.node.networkName);
+
+		if (prompt != null) {
+			this.node.networkName = prompt;
+			this.nodeService.updateNode(this.node)
+				.subscribe(() => window.alert('Network name updated'));
+		}
+	}
+
 }
