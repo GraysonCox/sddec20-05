@@ -28,12 +28,12 @@ public interface NodeService {
 	NodeModel getNodeByIpAddress(String ipAddress) throws NodeServiceException;
 
 	/**
-	 * Matches the given node with an existing node by its IP address and updates the existing node with the properties
-	 * of the given node.
+	 * Updates the node with the given IP address.
 	 *
-	 * @param node The node to persist.
+	 * @param ipAddress The IPv4 address of the node to update.
+	 * @param node      The node to persist.
 	 * @throws NodeServiceException If there is an exception while updating the node.
 	 */
-	void updateNode(NodeModel node) throws NodeServiceException;
+	void updateNode(String ipAddress, NodeModel node) throws NodeServiceException;
 
 }

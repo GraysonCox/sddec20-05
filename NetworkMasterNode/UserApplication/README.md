@@ -1,27 +1,19 @@
-# SdUiDemo
+# UserApplication
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+## Overview
 
-## Development server
+This is the UI application that allows the user to view the information being shared among the mesh network. Right now, it's just two pages: a home page, which lists all the nodes in the network, and a node-detail page, where the user can view and interact with a selected node. It's primitive currently, but it has a clean architecture and is ready to be expanded. Thanks and go State.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Deployment
 
-## Code scaffolding
+### For Production
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Deploying this application to a Raspberry Pi is handled by the start up scripts in the `NetworkMasterNode` directory of this repository. Go to the README in that directory for production deployment instructions.
 
-## Build
+### For Development/Testing
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+There are two options for running this application locally.
 
-## Running unit tests
+To run `UserApplication` along with the actual `BackendApplication`, do `npm run start` and navigate to `http://localhost:4200/` in your browser. This will proxy all API requests, so the `BackendApplication` must also be running on the same machine.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To run `UserApplication` by itself without having to start `BackendApplication`, do `npm run start-with-mock-backend` and navigate to `http://localhost:4200/` in your browser. This instruction uses `json-server` to make a fake REST server so that the `BackendApplication` won't be needed. The mock data used by this server is located in `mock-backend-application-data.json`.

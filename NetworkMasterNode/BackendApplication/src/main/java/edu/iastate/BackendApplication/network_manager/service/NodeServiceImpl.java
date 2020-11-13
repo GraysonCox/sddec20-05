@@ -29,9 +29,9 @@ public class NodeServiceImpl implements NodeService {
 	}
 
 	@Override
-	public void updateNode(NodeModel node) {
+	public void updateNode(String ipAddress, NodeModel node) {
 		for (NodeModel liveNode : testNodes) {
-			if (liveNode.getIpAddress().equals(node.getIpAddress())) {
+			if (liveNode.getIpAddress().equals(ipAddress)) {
 				liveNode.setName(node.getName());
 				liveNode.setNetworkName(node.getNetworkName());
 			}

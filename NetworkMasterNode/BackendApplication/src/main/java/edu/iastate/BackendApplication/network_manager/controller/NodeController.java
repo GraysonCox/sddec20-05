@@ -2,7 +2,12 @@ package edu.iastate.BackendApplication.network_manager.controller;
 
 import edu.iastate.BackendApplication.network_manager.exception.NodeServiceException;
 import edu.iastate.BackendApplication.network_manager.model.NodeModel;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,7 +24,7 @@ public interface NodeController {
 	 * @return A list containing all the active nodes in the network.
 	 * @throws NodeServiceException If there is an exception while fetching all the nodes in the network.
 	 */
-	@GetMapping("/all")
+	@GetMapping
 	List<NodeModel> getAllNodes() throws NodeServiceException;
 
 	/**
@@ -33,13 +38,13 @@ public interface NodeController {
 	NodeModel getNodeByIpAddress(@PathVariable String ipAddress) throws NodeServiceException;
 
 	/**
-	 * Matches the given node with an existing node by its IP address and updates the existing node with the properties
-	 * of the given node.
+	 * Updates the node with the given IP address.
 	 *
-	 * @param node The node to persist.
+	 * @param ipAddress The IPv4 address of the node to update.
+	 * @param node      The node to persist.
 	 * @throws NodeServiceException If there is an exception while updating the node.
 	 */
-	@PostMapping("/update")
-	void updateNode(@RequestBody NodeModel node) throws NodeServiceException;
+	@PutMapping("/{ipAddress}")
+	void updateNode(@PathVariable String ipAddress, @RequestBody NodeModel node) throws NodeServiceException;
 
 }
