@@ -6,6 +6,8 @@ cd batctl
 sudo make install
 sudo apt-get install alfred
 
+cd
+
 sudo apt-get install hostapd
 
 sudo mv /etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf.orig
