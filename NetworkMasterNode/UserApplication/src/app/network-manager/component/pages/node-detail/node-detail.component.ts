@@ -34,8 +34,11 @@ export class NodeDetailComponent implements OnInit {
 
 		if (prompt != null) {
 			this.node.name = prompt;
-			this.nodeService.updateNode(this.node)
-				.subscribe(() => window.alert('Node name updated'));
+			this.nodeService.updateNode(this.node.ipAddress, this.node)
+				.subscribe(
+					() => window.alert('Node name updated.'),
+					() => window.alert('Could not update node name.')
+				);
 		}
 	}
 
@@ -44,8 +47,11 @@ export class NodeDetailComponent implements OnInit {
 
 		if (prompt != null) {
 			this.node.networkName = prompt;
-			this.nodeService.updateNode(this.node)
-				.subscribe(() => window.alert('Network name updated'));
+			this.nodeService.updateNode(this.node.ipAddress, this.node)
+				.subscribe(
+					() => window.alert('Network name updated.'),
+					() => window.alert('Could not update network name.')
+				);
 		}
 	}
 

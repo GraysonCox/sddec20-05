@@ -31,7 +31,7 @@ class NodeControllerImplTest {
 
 	@BeforeEach
 	void setUp() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		nodeController = new NodeControllerImpl(nodeService);
 	}
 
@@ -80,21 +80,23 @@ class NodeControllerImplTest {
 
 	@Test
 	void updateNode_success() throws NodeServiceException {
+		String ipAddress = "";
 		NodeModel node = new NodeModel();
 
-		nodeController.updateNode(node);
+		nodeController.updateNode(ipAddress, node);
 
-		verify(nodeService, times(1)).updateNode(node);
+		verify(nodeService, times(1)).updateNode(ipAddress, node);
 	}
 
 	@Test
 	void updateNode_throwException() throws NodeServiceException {
+		String ipAddress = "";
 		NodeModel node = new NodeModel();
 
-		doThrow(mock(NodeServiceException.class)).when(nodeService).updateNode(node);
+		doThrow(mock(NodeServiceException.class)).when(nodeService).updateNode(ipAddress, node);
 
 		assertThatExceptionOfType(NodeServiceException.class)
-				.isThrownBy(() -> nodeController.updateNode(node));
+				.isThrownBy(() -> nodeController.updateNode(ipAddress, node));
 	}
 
 }

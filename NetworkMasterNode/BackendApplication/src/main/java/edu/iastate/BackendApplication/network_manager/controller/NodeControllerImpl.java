@@ -28,8 +28,8 @@ public class NodeControllerImpl implements NodeController {
 	}
 
 	@Override
-	public void updateNode(NodeModel node) throws NodeServiceException {
-		nodeService.updateNode(node);
+	public void updateNode(String ipAddress, NodeModel node) throws NodeServiceException {
+		nodeService.updateNode(ipAddress, node);
 	}
 
 }

@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config backend-application-proxy.conf.json",
+    "build": "ng build --proxy-config backend-application-proxy.conf.json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start-mock-backend": "json-server --watch mock-backend-application-data.json --id ipAddress",
+    "start-with-proxy-to-mock": "ng serve --proxy-config mock-backend-application-proxy.conf.json",
+    "start-with-mock-backend": "concurrently --kill-others \"npm run start-mock-backend\" \"npm run start-with-proxy-to-mock\""
   },
   "private": true,
   "dependencies": {
@@ -35,8 +38,10 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "concurrently": "^5.2.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "json-server": "^0.16.1",
     "karma": "~4.4.1",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.0",

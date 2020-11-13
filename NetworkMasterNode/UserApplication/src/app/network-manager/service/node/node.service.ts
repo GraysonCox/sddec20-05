@@ -28,8 +28,7 @@ export class NodeService {
 	 * Returns a list containing all the active nodes in the network.
 	 */
 	getAllNodes(): Observable<NodeModel[]> {
-		const url = `${ this.nodesUrl }/all`;
-		return this.http.get<NodeModel[]>(url)
+		return this.http.get<NodeModel[]>(this.nodesUrl)
 			.pipe(
 				tap(_ => NodeService.log('fetched nodes')),
 				catchError(this.handleError<NodeModel[]>('getNodes', []))
@@ -50,13 +49,13 @@ export class NodeService {
 	}
 
 	/**
-	 * Matches the given node with an existing node by its IP address and updates the existing node with the properties
-	 * of the given node.
+	 * Updates the node with the given IP address.
+	 * @param ipAddress The IPv4 address of the node to update.
 	 * @param node The node to persist.
 	 */
-	updateNode(node: NodeModel): Observable<void> {
-		const url = `${ this.nodesUrl }/update`;
-		return this.http.post<void>(url, node)
+	updateNode(ipAddress: string, node: NodeModel): Observable<void> {
+		const url = `${ this.nodesUrl }/${ node.ipAddress }`;
+		return this.http.put<void>(url, node)
 			.pipe(
 				tap(_ => NodeService.log(`updated node IP=${ node.ipAddress }`)),
 				catchError(this.handleError<void>(`updateNode IP=${ node.ipAddress }`))

@@ -26,8 +26,7 @@ public class BackendApplication {
 						.allowedOrigins("http://localhost:8080",
 										"http://localhost:4200")
 						.allowedMethods(HttpMethod.GET.name(),
-										HttpMethod.POST.name(),
-										HttpMethod.DELETE.name());
+										HttpMethod.PUT.name());
 			}
 		};
 	}
