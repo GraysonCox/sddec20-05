@@ -1,4 +1,6 @@
 ## Video Streaming Deployment
+This readme tells how to run the camera stream on a Video Mesh Node.
+
 - When you boot up the Pi, you should have the camera connected via the ribbon cable.
 - You will first need to have the Raspberry Pi OS installed on the Pi (https://www.raspberrypi.org/downloads/raspberry-pi-os/). For the purpose of video streaming, you may use either the lite or desktop versions.
 - You will also need to have Docker installed on the Pi. Use the convenience script method here (https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script).
