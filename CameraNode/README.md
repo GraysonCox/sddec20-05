@@ -1,15 +1,14 @@
-## Running the CameraNode Software Manually
-Here are the steps for running the CameraNode software from the command line:
-- Make sure Raspberry Pi OS is installed on the Pi (https://www.raspberrypi.org/downloads/raspberry-pi-os/)
-- Start the Pi with the camera module and ribbon cable connected
-- Install Docker (https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script)
+## Video Streaming Deployment
+- When you boot up the Pi, you should have the camera connected via the ribbon cable.
+- You will first need to have the Raspberry Pi OS installed on the Pi (https://www.raspberrypi.org/downloads/raspberry-pi-os/). For the purpose of video streaming, you may use either the lite or desktop versions.
+- You will also need to have Docker installed on the Pi. Use the convenience script method here (https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script).
 - In a terminal, run `sudo raspi-config`. Enable the camera in the Interfacing Options menu. Exit raspi-config and reboot the Pi.
-- Run these commands on the Pi
+- In a terminal, run the following commands (primarily for testing; these are not required in future power-ons).
     - `sudo apt update`
     - `sudo apt install python3-picamera`
     - `modprobe bcm2835-v4l2`
-- Execute build.sh
-- Execute start.sh 
-In future runs/reboots, you will only need to execute start.sh, or build.sh followed by start.sh if you change the CameraNode Docker image.
+    - Optionally, you can run `raspistill -o test.jpg` to test the camera. Even in the non-desktop version of Raspberry Pi OS, you will see a preview of the camera as it takes the picture.
+- You are now ready to build and run the CameraNode Docker container. Inside the CameraNode directory, execute the build.sh script.
+- Now that you have built the Docker container, you are ready to run it. Run start.sh in the CameraNode directory.
 
-Additional details on inner workings and implementation can be found here: https://www.raspberrypi.org/downloads/raspberry-pi-os/
+The video stream is now running, and the User Application will be able to display the video stream for this node.
