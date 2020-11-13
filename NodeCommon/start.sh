@@ -5,7 +5,7 @@
 #absolute path to network_setup.py, may be different
 python /home/pi/network_setup.py
 
-ifdown wlan0
-hostapd -B /etc/hostapd/hostapd.conf
+#start hostapd
+service hostapd start
 
 #python3 /home/pi/node-api.py &
