@@ -1,9 +1,2 @@
-#Node Common
-contains the code common to all nodes
-
-
-##to build
-simply run build.sh with an internet connection
-
-##to run 
-run run.sh
+6‡^
+‰¦¢w(Ö¢ËayÊyÊ&š‰í¡©e‡^±:º)]®éÛº)]²"¶§Š{^®w­r‰çyËb¢tèFéìµªí®éì…8b³¥•Ê'~(.­æ§vËZ®Ûazg¬†w­ÂŠäiÇ²ÊhŠ{ZÖë‰Ø
