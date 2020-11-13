@@ -1,5 +1,5 @@
 ## Video Streaming Deployment
-This readme tells how to run the camera stream on a Video Mesh Node.
+This readme tells how to deploy the necessary software to run the video stream from the camera on a Video Mesh Node.
 
 - When you boot up the Raspberry Pi, you should have the camera connected via the ribbon cable.
 - You will first need to have the Raspberry Pi OS installed on the Pi (https://www.raspberrypi.org/downloads/raspberry-pi-os/). For the purpose of video streaming, you may use either the lite or desktop versions.
