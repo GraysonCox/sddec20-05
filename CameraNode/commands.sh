@@ -3,12 +3,12 @@
 /opt/janus/bin/janus -F /opt/janus/etc/janus &
 ffmpeg -f v4l2 \
 	-input_format yuyv422 \
-	-video_size 4cif \
-	-framerate 30 \
+	-video_size hvga \
+	-framerate 15 \
 	-i /dev/video0 \
 	-c:v h264_omx \
 	-profile:v baseline \
-	-b:v 2M \
+	-b:v 320k \
 	-bf 0 \
 	-flags:v +global_header \
 	-bsf:v "dump_extra=freq=keyframe" \
