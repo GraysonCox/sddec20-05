@@ -1,5 +1,5 @@
 ## Video Streaming Deployment
-This readme tells how to deploy the necessary software to run the video stream from the camera on a Video Mesh Node.
+This readme tells how to deploy the Video Streaming Software to run the video stream from the camera on a Video Mesh Node.
 
 - You will first need to have the Raspberry Pi OS installed on the Pi (https://www.raspberrypi.org/downloads/raspberry-pi-os/). For the purpose of video streaming, you may use either the lite or desktop versions. You will need a monitor, keyboard, and mouse for the setup. Alternatively, you can enable ssh and execute the necessary commands remotely.
 - Boot up the Pi. You should have the camera connected via the ribbon cable.
