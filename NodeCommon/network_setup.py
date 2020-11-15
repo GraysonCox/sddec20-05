@@ -6,7 +6,7 @@ mesh_network_name = ''
 
 
 try:
-    f = open("/home/pi/sddec20-05/NodeCommon/network_settings.cfg")
+    f = open('network_settings.cfg')
     lines = f.readlines()
     for line in lines:
         line = line[0: len(line)-1]
