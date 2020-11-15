@@ -6,7 +6,7 @@ mesh_network_name = ''
 
 
 try:
-    f = open("/home/pi/network_settings.cfg")
+    f = open('network_settings.cfg')
     lines = f.readlines()
     for line in lines:
         line = line[0: len(line)-1]
@@ -43,3 +43,9 @@ os.system('ip link set up dev bat0') #link dev bat0
 
 command = 'ifconfig bat0 ' +  ip_addr
 os.system(command) #configure batman with correct ip address
+
+#create bridge
+os.system('ip link add name mesh-bridge type bridge')
+os.system('ip link set dev mesh-bridge up')
+os.system('ip link set dev wlan0 master mesh-bridge')
+os.system('ip link set dev bat0 master mesh-bridge')
