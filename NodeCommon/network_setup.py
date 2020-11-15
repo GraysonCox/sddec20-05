@@ -13,9 +13,9 @@ try:
         type = line.split('=')
 
 
-        if(type[0] == 'NODE_IP_ADDRESS'):
+        if(type[0] == 'node_ip_address'):
             ip_addr = type[1]
-        if(type[0] == 'MESH_NETWORK_NAME'):
+        if(type[0] == 'mesh_network_name'):
             mesh_network_name = type[1]
 
     f.close()
