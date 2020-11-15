@@ -12,11 +12,11 @@ Run `make build` in this directory to build the `UserApplication` and `BackendAp
 
 #### Starting
 
-Run `make start` script in this directory to run the applications in the background.
+Run `make start` in this directory to run the applications in the background.
 
 #### Stopping
 
-Run `make stop` to stop the Docker containers.
+Run `make stop` in this directory to stop the Docker containers.
 
 ## Other Notes
 
