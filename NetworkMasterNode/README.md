@@ -8,15 +8,15 @@ This node is responsible for hosting `UserApplication` and `BackendApplication`.
 
 #### Building
 
-Run the `build.sh` script in this directory to build the `UserApplication` and `BackendApplication` Docker containers.
+Run `make build` in this directory to build the `UserApplication` and `BackendApplication` Docker containers.
 
 #### Starting
 
-Run the `start.sh` script in this directory to run the applications in the background.
+Run `make start` script in this directory to run the applications in the background.
 
 #### Stopping
 
-Run `stop.sh` to stop the Docker containers.
+Run `make stop` to stop the Docker containers.
 
 ## Other Notes
 
