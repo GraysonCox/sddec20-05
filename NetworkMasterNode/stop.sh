@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
-# TODO
+docker-compose stop
