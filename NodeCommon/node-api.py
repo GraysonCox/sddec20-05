@@ -29,10 +29,10 @@ def get_json():
     config = configparser.ConfigParser()
     config.read(NETWORK_SETTINGS_FILE_PATH)
 
-    ip_addr = config['node_properties']['NODE_IP_ADDRESS']
-    node_name = config['node_properties']['NODE_NAME']
-    node_type = config['node_properties']['NODE_TYPE']
-    mesh_network_name = config['node_properties']['MESH_NETWORK_NAME']
+    ip_addr = config['node_properties']['node_ip_address']
+    node_name = config['node_properties']['node_name']
+    node_type = config['node_properties']['node_type']
+    mesh_network_name = config['node_properties']['mesh_network_name']
     battery_percentage = 100
 
     return {
@@ -48,10 +48,10 @@ def persist_node(node_json):
     config = configparser.ConfigParser()
 
     config.add_section('node_properties')
-    config['node_properties']['NODE_IP_ADDRESS'] = node_json.get('ipAddress', 'ERROR')
-    config['node_properties']['NODE_NAME'] = node_json.get('name', 'ERROR')
-    config['node_properties']['NODE_TYPE'] = node_json.get('type', 'ERROR')
-    config['node_properties']['MESH_NETWORK_NAME'] = node_json.get('networkName', 'ERROR')
+    config['node_properties']['node_ip_address'] = node_json.get('ipAddress', 'ERROR')
+    config['node_properties']['node_name'] = node_json.get('name', 'ERROR')
+    config['node_properties']['node_type'] = node_json.get('type', 'ERROR')
+    config['node_properties']['mesh_network_name'] = node_json.get('networkName', 'ERROR')
 
     with open(NETWORK_SETTINGS_FILE_PATH, 'w') as config_file:
         config.write(config_file)
