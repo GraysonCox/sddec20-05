@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start-mock-backend": "json-server --watch mock-backend-application-data.json --id ipAddress",
+    "start-mock-backend": "json-server --watch mock-backend-application-data.json --id ipAddress --delay 1000",
     "start-with-proxy-to-mock": "ng serve --proxy-config mock-backend-application-proxy.conf.json",
     "start-with-mock-backend": "concurrently --kill-others \"npm run start-mock-backend\" \"npm run start-with-proxy-to-mock\""
   },

@@ -13,7 +13,7 @@ import { NodeService } from 'src/app/network-manager/service/node/node.service';
 export class HomePageComponent implements OnInit {
 
 	nodes: Observable<NodeModel[]>;
-	$i: number;
+	isLoading = false;
 
 	constructor(private nodeService: NodeService) {
 	}
@@ -23,7 +23,9 @@ export class HomePageComponent implements OnInit {
 	}
 
 	fetchNodes(): void {
+		this.isLoading = true;
 		this.nodes = this.nodeService.getAllNodes();
+		this.nodes.subscribe(() => this.isLoading = false);
 	}
 
 }
