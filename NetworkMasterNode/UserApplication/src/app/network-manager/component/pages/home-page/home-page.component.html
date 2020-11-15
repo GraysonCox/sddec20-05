@@ -15,19 +15,12 @@
 	</div>
 </nav>
 
-<!--<div class="header">-->
-<!--	<h1>Nodes in your network</h1>-->
-<!--	<div class="spacer"></div>-->
-<!--	<button type="button" (click)="fetchNodes()">Refresh</button>-->
-<!--</div>-->
-
-
-<!--	<a *ngFor="let node of nodes | async" routerLink="/node/{{node.id}}">-->
 <br>
-<div class="row justify-content-center" style="padding-right: 10px; padding-left: 10px;">
+<div *ngIf="!isLoading; else loadingTemplate"
+	 class="row justify-content-center"
+	 style="padding-right: 10px; padding-left: 10px;">
 
-	<div *ngFor="let node of nodes | async; let $i = index" [attr.data-index]="$i" class="col-sm-4">
-
+	<div *ngFor="let node of nodes | async" class="col-sm-4">
 		<div class="card mb-4 box-shadow">
 			<div class="card-header">
 				<h4 class="my-0 font-weight-normal">{{node.name}}</h4>
@@ -45,10 +38,7 @@
 			</div>
 		</div>
 	</div>
-	<!--		<div class="module">-->
-	<!--			<h3>{{node.name}}</h3>-->
-	<!--			<p>{{node.ipAddress}}</p>-->
-	<!--		</div>-->
-	<!--	</a>-->
 </div>
-
+<ng-template #loadingTemplate>
+	Loading...
+</ng-template>
