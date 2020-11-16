@@ -1,12 +1,19 @@
-## An Advanced Networking Outreach Activity For Kids
+# An Advanced Networking Outreach Activity For Kids
 
-# Overview
+## Overview
 
-TODO
+This repository contains all of our project's code. The directories at the root of this repository are as follows.
 
-# Deploying Software to a Node
+- NodeCommon
+    - This is for startup scripts and code that is used by every type of node.
+- CameraNode
+    - This is for startup scripts and code that is used by Video Mesh Nodes.
+- NetworkMasterNode
+    - This is for startup scripts and code that is used by the Network Master Node.
 
-The high-level steps for deploying this software to a Raspberry Pi are as follows.
+## Deploying Software to a Node
+
+The high-level steps for deploying this software to a Raspberry Pi are as follows. You will have to refer to the associated README.md files for complete instructions.
 
 1. Put the project repository on the Raspberry Pi.
 1. Follow the node setup instructions in `NodeCommon/README.md`.
