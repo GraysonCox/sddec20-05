@@ -6,6 +6,8 @@ cd batctl
 sudo make install
 sudo apt-get install alfred
 
+sudo apt-get install dnsmasq
+
 cd
 
 sudo apt-get install hostapd
