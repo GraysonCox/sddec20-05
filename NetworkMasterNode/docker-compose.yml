@@ -4,12 +4,10 @@ services:
   backend-application:
     container_name: 'backend-application'
     build: './BackendApplication'
-    ports:
-      - "8081:8081"
+    network_mode: 'host'
   user-application:
     container_name: 'user-application'
     build: './UserApplication'
     depends_on:
       - backend-application
-    ports:
-      - "8080:80"
+    network_mode: 'host'

@@ -22,14 +22,6 @@ public class NodeModel {
 	@JsonProperty("batteryPercentage")
 	private Integer batteryPercentage;
 
-	public NodeModel(String ipAddress, String name, NodeType type, String networkName, Integer batteryPercentage) {
-		this.ipAddress = ipAddress;
-		this.name = name;
-		this.type = type;
-		this.networkName = networkName;
-		this.batteryPercentage = batteryPercentage;
-	}
-
 	public NodeModel() {
 	}
 

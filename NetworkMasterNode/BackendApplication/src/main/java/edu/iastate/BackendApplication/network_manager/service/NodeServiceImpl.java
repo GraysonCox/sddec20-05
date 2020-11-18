@@ -1,8 +1,14 @@
 package edu.iastate.BackendApplication.network_manager.service;
 
+import edu.iastate.BackendApplication.network_manager.exception.NmapClientException;
+import edu.iastate.BackendApplication.network_manager.exception.NodeApiClientException;
+import edu.iastate.BackendApplication.network_manager.exception.NodeServiceException;
 import edu.iastate.BackendApplication.network_manager.model.NodeModel;
-import edu.iastate.BackendApplication.network_manager.model.NodeType;
+import org.apache.commons.validator.routines.InetAddressValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,31 +16,56 @@ import java.util.List;
  */
 public class NodeServiceImpl implements NodeService {
 
-	private List<NodeModel> testNodes = List.of(
-			new NodeModel("192.168.1.7", "Master", NodeType.MASTER, "Network 1", 78),
-			new NodeModel("192.168.1.3", "Relay 1", NodeType.RELAY, "Network 1", 24),
-			new NodeModel("192.168.1.24", "Relay 2", NodeType.RELAY, "Network 1", 68),
-			new NodeModel("192.168.1.6", "Relay 3", NodeType.RELAY, "Network 1", 69),
-			new NodeModel("192.168.1.17", "Camera 1", NodeType.CAMERA, "Network 1", 94),
-			new NodeModel("192.168.1.2", "Camera 2", NodeType.CAMERA, "Network 1", 74));
+	private static final Logger logger = LoggerFactory.getLogger(NodeServiceImpl.class);
 
-	@Override
-	public List<NodeModel> getAllNodes() {
-		return testNodes;
+	private final NmapClient nmapClient;
+	private final NodeApiClient nodeApiClient;
+
+	public NodeServiceImpl(NmapClient nmapClient, NodeApiClient nodeApiClient) {
+		this.nmapClient = nmapClient;
+		this.nodeApiClient = nodeApiClient;
 	}
 
 	@Override
-	public NodeModel getNodeByIpAddress(String ipAddress) {
-		return testNodes.stream().filter(node -> node.getIpAddress().equals(ipAddress)).findFirst().orElse(null);
-	}
-
-	@Override
-	public void updateNode(String ipAddress, NodeModel node) {
-		for (NodeModel liveNode : testNodes) {
-			if (liveNode.getIpAddress().equals(ipAddress)) {
-				liveNode.setName(node.getName());
-				liveNode.setNetworkName(node.getNetworkName());
+	public List<NodeModel> getAllNodes() throws NodeServiceException {
+		logger.info("Finding all nodes in network...");
+		try {
+			List<String> ipAddresses = nmapClient.getIpAddressesInNetwork();
+			List<NodeModel> nodes = new ArrayList<>(ipAddresses.size());
+			for (String ipAddress : ipAddresses) {
+				NodeModel node = nodeApiClient.getNodeByIpAddress(ipAddress);
+				if (node != null) {
+					nodes.add(node);
+				}
 			}
+			return nodes;
+		} catch (NmapClientException | NodeApiClientException e) {
+			throw NodeServiceException.withMessage("There was an error while fetching all nodes.", e);
+		}
+	}
+
+	@Override
+	public NodeModel getNodeByIpAddress(String ipAddress) throws NodeServiceException {
+		logger.info("Fetching node with IPv4 address {}...", ipAddress);
+		if (!InetAddressValidator.getInstance().isValidInet4Address(ipAddress)) {
+			throw NodeServiceException.withMessage("The address is not a valid IPv4 address.");
+		}
+
+		try {
+			return nodeApiClient.getNodeByIpAddress(ipAddress);
+		} catch (NodeApiClientException e) {
+			throw NodeServiceException.withMessage("There was an error while fetching node at " + ipAddress, e);
+		}
+	}
+
+	@Override
+	public void updateNode(String ipAddress, NodeModel node) throws NodeServiceException {
+		logger.info("Updating node with IPv4 address {}...", ipAddress);
+		try {
+			nodeApiClient.updateNode(node);
+		} catch (NodeApiClientException e) {
+			String message = "There was an error while fetching node at " + node.getIpAddress();
+			throw NodeServiceException.withMessage(message, e);
 		}
 	}
 

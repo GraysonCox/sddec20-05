@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
 	implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
+	implementation(group: 'org.springframework.boot', name: 'spring-boot-configuration-processor')
 	implementation(group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13')
 	implementation(group: 'commons-validator', name: 'commons-validator', version: '1.4.0')
 

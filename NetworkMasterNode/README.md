@@ -6,6 +6,8 @@ This node is responsible for hosting `UserApplication` and `BackendApplication`.
 
 ## Deployment
 
+These instructions are strictly for deploying the software on a Raspberry Pi. The Docker configuration of this module uses `network_mode: 'host'`, which works only in Linux. If you want to run these programs locally on your development machine for testing purposes, view the `README.md` instructions in either subdirectory.
+
 #### Building
 
 Run `make build` in this directory to build the `UserApplication` and `BackendApplication` Docker containers.
@@ -13,6 +15,8 @@ Run `make build` in this directory to build the `UserApplication` and `BackendAp
 #### Starting
 
 Run `make start` in this directory to run the applications in the background.
+
+You can access the application by navigating to `http://<IP address of Network Master Node>:4200/` in any browser on any machine in the same network.
 
 #### Stopping
 
