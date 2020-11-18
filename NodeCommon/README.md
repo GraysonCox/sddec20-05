@@ -2,7 +2,7 @@
 contains the code common to all nodes. This includes the Node Information API, mesh network, wifi access point, and bridge.
 
 ## To Install
-To install the dependencies and properly configure the node, run Install.sh on each node in the system
+To install the dependencies and properly configure the node, run the commands in install.sh on on the pi, at this moment the commands do not work when run in shell
 
 ## To Start
 Before starting the network, navigate to network_settings.cfg and change the information in there to match the information for the node
